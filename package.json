@@ -1,0 +1,18 @@
+{
+  "name": "koho-assesment",
+  "version": "1.0.0",
+  "description": "KOHO assesment",
+  "main": ".mongorc.js",
+  "scripts": {
+    "start": ""
+  },
+  "keywords": [
+    "KOHO"
+  ],
+  "author": "Reza Younesi",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "nodeman": "^1.1.2"
+  }
+}
