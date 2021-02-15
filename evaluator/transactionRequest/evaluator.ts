@@ -1,6 +1,6 @@
-import { CustomerTransaction } from "../../models/graphTransaction_viewmodel/customerTransaction";
 import * as  velocity from '../../setting/velocity/limits_config';
 import { TransactionResponse } from '../../models/transaction/transactionResponse';
+import { CustomerTransaction } from '../../models/tree-transaction_viewmodel/customerTransaction';
 
 export class TransactionEvaluator{
   static transactionEval = (customerTransactionCollection: Array<CustomerTransaction>) :Array<TransactionResponse> => {

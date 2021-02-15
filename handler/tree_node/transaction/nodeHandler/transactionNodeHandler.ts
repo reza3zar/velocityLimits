@@ -2,7 +2,7 @@ import { DateTimeParts } from "../../../../models/common/dateTimeParts";
 import { TransactionRequest } from "../../../../models/transaction/transactionRequest";
 import * as _ from '../../../transactionHandler/transaction';
 import * as node from '../inquiry/inquiryCustomerTransaction'
-import { CustomerTransaction } from "../../../../models/graphTransaction_viewmodel/customerTransaction";
+import { CustomerTransaction } from "../../../../models/tree-transaction_viewmodel/customerTransaction";
 
 export class TransactionNodeHandler{
   static addCustomerTransactionNode = (transactionRequest:TransactionRequest,dateTimeParts:DateTimeParts,customerTransactionCollection:Array<CustomerTransaction>) => {

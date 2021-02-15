@@ -12,6 +12,6 @@ export const errors = {
   'day-customer-transaction-is-not-correct-format':'Day customer transaction is not correct format !!!',
   'transaction-response-collection-not-found': "Transaction response collection does not found !!!",
   'transaction-request-collection-not-found':"Transaction request source collection does not found !!!",
-  
+  'argument-parameters-are-empty-or-null':"Argument parameters are empty or null"
 }
  

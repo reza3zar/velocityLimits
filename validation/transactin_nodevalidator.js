@@ -5,15 +5,15 @@ var errorMessages = require("../setting/transaction-error/errors");
 var TransactinNodeValidator = /** @class */ (function () {
     function TransactinNodeValidator() {
     }
-    TransactinNodeValidator.checkCustomerofTransactionIsMatch = function (customerTransaction, customerId) {
-        return customerTransaction.customer_id === customerId;
-    };
     TransactinNodeValidator.checkCustomerTransactionIsMatched = function (customerTransaction, customerId) {
-        var customerIsMatched = TransactinNodeValidator.checkCustomerofTransactionIsMatch(customerTransaction, customerId);
+        if (!customerTransaction || !customerId || customerId.length === 0)
+            throw new Error(errorMessages.errors['argument-parameters-are-empty-or-null']);
+        var customerIsMatched = customerTransaction.customer_id === customerId;
         if (!customerIsMatched)
             throw new Error(errorMessages.errors['customer-transaction-not-matched']);
+        return true;
     };
-    TransactinNodeValidator.checkCustomerTransactionHasThisYear = function (customerYearlyTransaction, customerId, dateTimeParts, customerTransaction) {
+    TransactinNodeValidator.checkCustomerTransactionHasThisYear = function (customerYearlyTransaction, customerId, customerTransaction) {
         TransactinNodeValidator.checkCustomerTransactionIsMatched(customerTransaction, customerId);
         if (customerYearlyTransaction && customerYearlyTransaction.length > 1) {
             throw new Error(errorMessages.errors['more-than-one-record-yearly-transaction-not-allowed']);
@@ -32,7 +32,7 @@ var TransactinNodeValidator = /** @class */ (function () {
             return true;
         return false;
     };
-    TransactinNodeValidator.checkCustomerTransactionHasThisWeek = function (monthCustomerTransaction, dateTimeParts, customerTransaction) {
+    TransactinNodeValidator.checkCustomerTransactionHasThisWeek = function (monthCustomerTransaction, dateTimeParts) {
         var weekCustomerTransaction = monthCustomerTransaction.weeklyTransactionCollection.filter(function (x) { return x.week === dateTimeParts.week; });
         if (weekCustomerTransaction && weekCustomerTransaction.length > 1) {
             throw new Error(errorMessages.errors['more-than-one-record-weekly-transaction-not-allowed']);
@@ -41,8 +41,7 @@ var TransactinNodeValidator = /** @class */ (function () {
             return true;
         return false;
     };
-    TransactinNodeValidator.checkCustomerTransactionHasThisDay = function (weekCustomerTransaction, dateTimeParts, customerTransaction) {
-        // getYearOfCustomerTransaction(customerTransaction, dateTimeParts);
+    TransactinNodeValidator.checkCustomerTransactionHasThisDay = function (weekCustomerTransaction, dateTimeParts) {
         var dayCustomerTransaction = weekCustomerTransaction.dailyTransactionCollection.filter(function (x) { return x.day === dateTimeParts.day; });
         if (dayCustomerTransaction && dayCustomerTransaction.length > 1) {
             throw new Error(errorMessages.errors['more-than-one-record-daily-transaction-not-allowed']);

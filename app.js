@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var transactionRequestSource = require("./data/transactions.json");
 var errorMessages = require("./setting/transaction-error/errors");
-var transactionTreeHandler = require("./handler/graph_node/transaction/tree/customerTransactionHandler");
+var transactionTreeHandler = require("./handler/tree_node/transaction/tree/customerTransactionHandler");
 var evals = require("./evaluator/transactionRequest/evaluator");
 var validator_1 = require("./validation/validator");
 var velocityLimitsEvaluator = function () {
@@ -11,11 +11,11 @@ var velocityLimitsEvaluator = function () {
         var isValidDataSrc = validator_1.Validator.validateDataSource(transactionRequest);
         if (!isValidDataSrc)
             throw new Error(errorMessages.errors['input-not-found']);
-        var customerTransactionGraphCollection = transactionTreeHandler.CustomerTransactionHandler
+        var customerTransactionTreeCollection = transactionTreeHandler.CustomerTransactionHandler
             .createCustomerTransactionTree(transactionRequest);
-        if (!customerTransactionGraphCollection || customerTransactionGraphCollection.length === 0)
+        if (!customerTransactionTreeCollection || customerTransactionTreeCollection.length === 0)
             throw new Error(errorMessages.errors['transaction-request-collection-not-found']);
-        var transactionResponseCollection = evals.TransactionEvaluator.transactionEval(customerTransactionGraphCollection);
+        var transactionResponseCollection = evals.TransactionEvaluator.transactionEval(customerTransactionTreeCollection);
         if (!transactionResponseCollection || transactionResponseCollection.length === 0)
             throw new Error(errorMessages.errors['transaction-response-collection-not-found']);
         transactionResponseCollection.forEach(function (trnsResponse) { return console.log(trnsResponse); });

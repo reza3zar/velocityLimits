@@ -1,9 +1,9 @@
 import { DateTimeParts } from "../../../../models/common/dateTimeParts";
-import { CustomerTransaction } from "../../../../models/graphTransaction_viewmodel/customerTransaction";
-import { DailyTransaction } from "../../../../models/graphTransaction_viewmodel/dailyTransaction";
-import { MonthlyTransaction } from "../../../../models/graphTransaction_viewmodel/monthlyTransaction";
-import { WeeklyTransaction } from "../../../../models/graphTransaction_viewmodel/weeklyTransaction";
-import { YearlyTransaction } from "../../../../models/graphTransaction_viewmodel/yearlyTransaction";
+import { CustomerTransaction } from "../../../../models/tree-transaction_viewmodel/customerTransaction";
+import { DailyTransaction } from "../../../../models/tree-transaction_viewmodel/dailyTransaction";
+import { MonthlyTransaction } from "../../../../models/tree-transaction_viewmodel/monthlyTransaction";
+import { WeeklyTransaction } from "../../../../models/tree-transaction_viewmodel/weeklyTransaction";
+import { YearlyTransaction } from "../../../../models/tree-transaction_viewmodel/yearlyTransaction";
 import * as  errorMessages from '../../../../setting/transaction-error/errors';
 
 export class InquiryCustomerTransaction{

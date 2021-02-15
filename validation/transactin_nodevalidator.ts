@@ -1,26 +1,25 @@
 import { DateTimeParts } from '../models/common/dateTimeParts';
-import { CustomerTransaction } from '../models/graphTransaction_viewmodel/customerTransaction';
-import { YearlyTransaction } from '../models/graphTransaction_viewmodel/yearlyTransaction';
+import { CustomerTransaction } from '../models/tree-transaction_viewmodel/customerTransaction';
+import { YearlyTransaction } from '../models/tree-transaction_viewmodel/yearlyTransaction';
 import * as  errorMessages from '../setting/transaction-error/errors';
-import { MonthlyTransaction } from '../models/graphTransaction_viewmodel/monthlyTransaction';
-import { WeeklyTransaction } from '../models/graphTransaction_viewmodel/weeklyTransaction';
+import { MonthlyTransaction } from '../models/tree-transaction_viewmodel/monthlyTransaction';
+import { WeeklyTransaction } from '../models/tree-transaction_viewmodel/weeklyTransaction';
 
 export class TransactinNodeValidator {
 
-
-static checkCustomerofTransactionIsMatch = (customerTransaction: CustomerTransaction, customerId: string): boolean => {
-  return customerTransaction.customer_id === customerId;
+  static checkCustomerTransactionIsMatched = (customerTransaction: CustomerTransaction, customerId: string): boolean => {
+  if(!customerTransaction || !customerId || customerId.length===0)  
+      throw new Error(errorMessages.errors['argument-parameters-are-empty-or-null']);
+    
+  const customerIsMatched =  customerTransaction.customer_id === customerId;
+  if (!customerIsMatched)
+      throw new Error(errorMessages.errors['customer-transaction-not-matched']);
+    return true;
 }
 
-static checkCustomerTransactionIsMatched=(customerTransaction: CustomerTransaction, customerId: string)=> {
-const customerIsMatched = TransactinNodeValidator.checkCustomerofTransactionIsMatch(customerTransaction, customerId);
-if (!customerIsMatched)
-  throw new Error(errorMessages.errors['customer-transaction-not-matched']);
-}
-
-static checkCustomerTransactionHasThisYear=(customerYearlyTransaction: Array<YearlyTransaction>,customerId: string, dateTimeParts: DateTimeParts, customerTransaction: CustomerTransaction): boolean=>{
+static checkCustomerTransactionHasThisYear=(customerYearlyTransaction: Array<YearlyTransaction>,customerId: string, customerTransaction: CustomerTransaction): boolean=>{
+  
   TransactinNodeValidator.checkCustomerTransactionIsMatched(customerTransaction, customerId);
-
  
 if (customerYearlyTransaction && customerYearlyTransaction.length > 1) {
   throw new Error(errorMessages.errors['more-than-one-record-yearly-transaction-not-allowed']);
@@ -41,7 +40,7 @@ if (monthCustomerTransaction && monthCustomerTransaction.length ===1)
 return false;
 }
 
-static checkCustomerTransactionHasThisWeek=(monthCustomerTransaction:MonthlyTransaction,dateTimeParts:DateTimeParts, customerTransaction: CustomerTransaction): boolean=>{
+static checkCustomerTransactionHasThisWeek=(monthCustomerTransaction:MonthlyTransaction,dateTimeParts:DateTimeParts): boolean=>{
  
 const weekCustomerTransaction = monthCustomerTransaction.weeklyTransactionCollection.filter(x => x.week === dateTimeParts.week);
 if (weekCustomerTransaction && weekCustomerTransaction.length > 1) {
@@ -52,11 +51,8 @@ if (weekCustomerTransaction && weekCustomerTransaction.length ===1)
 return false;
 }
 
-static checkCustomerTransactionHasThisDay=(weekCustomerTransaction:WeeklyTransaction,dateTimeParts:DateTimeParts, customerTransaction: CustomerTransaction): boolean=>{
-// getYearOfCustomerTransaction(customerTransaction, dateTimeParts);
- 
+static checkCustomerTransactionHasThisDay=(weekCustomerTransaction:WeeklyTransaction,dateTimeParts:DateTimeParts): boolean=>{
 const dayCustomerTransaction = weekCustomerTransaction.dailyTransactionCollection.filter(x => x.day === dateTimeParts.day);
-
 if (dayCustomerTransaction && dayCustomerTransaction.length > 1) {
   throw new Error(errorMessages.errors['more-than-one-record-daily-transaction-not-allowed']);
 }

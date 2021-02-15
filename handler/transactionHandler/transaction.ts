@@ -1,11 +1,12 @@
 import { DateTimeParts } from "../../models/common/dateTimeParts";
-import { CustomerTransaction } from "../../models/graphTransaction_viewmodel/customerTransaction";
-import { DailyTransaction } from "../../models/graphTransaction_viewmodel/dailyTransaction";
-import { MonthlyTransaction } from "../../models/graphTransaction_viewmodel/monthlyTransaction";
-import { WeeklyTransaction } from "../../models/graphTransaction_viewmodel/weeklyTransaction";
-import { YearlyTransaction } from "../../models/graphTransaction_viewmodel/yearlyTransaction";
+ 
 import { Transaction } from "../../models/transaction/transaction";
 import { TransactionRequest } from '../../models/transaction/transactionRequest';
+import { CustomerTransaction } from "../../models/tree-transaction_viewmodel/customerTransaction";
+import { DailyTransaction } from "../../models/tree-Transaction_viewmodel/dailyTransaction";
+import { MonthlyTransaction } from "../../models/tree-Transaction_viewmodel/monthlyTransaction";
+import { WeeklyTransaction } from "../../models/tree-Transaction_viewmodel/weeklyTransaction";
+import { YearlyTransaction } from "../../models/tree-Transaction_viewmodel/yearlyTransaction";
 
 export class TransactionFunctions{
 
