@@ -103,6 +103,6 @@ We value well-structured, self-documenting code with sensible test coverage. Des
 ```
 2.Step two: create a tree per customer base on above transactions. e.g.
 
-![tree of customer transaction](https://ibb.co/qW3NX1n)
+![plot](./asset/tree.png)
 
 
