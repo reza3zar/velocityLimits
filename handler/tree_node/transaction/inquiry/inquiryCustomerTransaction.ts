@@ -32,7 +32,6 @@ export class InquiryCustomerTransaction{
     
     return weekCustomerTransaction[0];
   }
-  
   static getDayOfCustomerTransaction = (customerTransaction: CustomerTransaction, dateTimeParts: DateTimeParts):DailyTransaction => {
     const weekCustomerTransaction = InquiryCustomerTransaction.getWeekOfCustomerTransaction(customerTransaction, dateTimeParts);
     const dayCustomerTransaction = weekCustomerTransaction.dailyTransactionCollection.filter(x => x.day === dateTimeParts.day);
@@ -42,7 +41,7 @@ export class InquiryCustomerTransaction{
   
   return dayCustomerTransaction[0];
 }
-  
+  //** This function return list of YearlyTransaction base on specefic year */
 static getCustomerYearlyTransacion = (customerTransaction: CustomerTransaction, year: number): Array<YearlyTransaction> => {
     return customerTransaction.yearlyTransactionCollection.filter(x => x.year === year);
   }

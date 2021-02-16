@@ -6,5 +6,7 @@ export class DateTimeParts{
   day: number;
   hour: number;
   minute: number;
+  second: number;
   milliSecond: number;
+
 }

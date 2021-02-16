@@ -6,7 +6,7 @@ import { CustomerTransaction } from '../../../../models/tree-transaction_viewmod
 import { TransactionRequest } from '../../../../models/transaction/transactionRequest';
 
 export class CustomerTransactionHandler{
-
+ //** This function receive array of TransactionRequest and create tree of customerTransaction per customer */
   static createCustomerTransactionTree = (transactionRequest: Array<TransactionRequest>): Array<CustomerTransaction> => {
     let customerTransactionCollection : Array<CustomerTransaction>=new Array<CustomerTransaction>();
     

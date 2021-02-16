@@ -2,7 +2,10 @@ import * as  velocity from '../../setting/velocity/limits_config';
 import { TransactionResponse } from '../../models/transaction/transactionResponse';
 import { CustomerTransaction } from '../../models/tree-transaction_viewmodel/customerTransaction';
 
+/** This class is responsibile for evaluate customerTransaction */
 export class TransactionEvaluator{
+
+  /** This function should check customer transaction base specific policy(velocity limits) and return transactions response  */
   static transactionEval = (customerTransactionCollection: Array<CustomerTransaction>) :Array<TransactionResponse> => {
     let transactionResponseCollection= new Array<TransactionResponse>();
 
@@ -42,13 +45,12 @@ export class TransactionEvaluator{
     })
     return transactionResponseCollection;
   }
-
+  /** This is a function to check is a transaction is accepted or not base velocityLimits config file. */
   static checkTransactionAcceptability = (sum_loads_value_daily: number, load_amount: number, sum_loads_value_Weekly: number, sum_loads_times_daily: number)=> {
       
     const maximumLoadAcceptable_perday = velocity.limitsConfig.maximum_load_amount_per_day;
     const maximumLoadAcceptable_perweek = velocity.limitsConfig.maximum_load_amount_per_week;
     const maximumTimesAcceptable_perday = velocity.limitsConfig.maximum_times_loads_can_be_performed_per_day;
-  
     return sum_loads_value_daily <= maximumLoadAcceptable_perday && (sum_loads_value_daily + load_amount) <= maximumLoadAcceptable_perday && sum_loads_value_Weekly <= maximumLoadAcceptable_perweek
       && sum_loads_value_Weekly + load_amount <= maximumLoadAcceptable_perweek
       && sum_loads_times_daily <= maximumTimesAcceptable_perday;

@@ -16,6 +16,8 @@ export class DateTimeUtility{
      dateTimeParts.day = moment.utc(dateTime).day();
      dateTimeParts.hour = moment.utc(dateTime).hour();
      dateTimeParts.minute = moment.utc(dateTime).minute();
+     dateTimeParts.second = moment.utc(dateTime).second();
+      
      dateTimeParts.milliSecond = moment.utc(dateTime).millisecond();
       
     return dateTimeParts;

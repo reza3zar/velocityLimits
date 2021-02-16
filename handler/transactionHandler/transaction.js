@@ -10,6 +10,7 @@ var yearlyTransaction_1 = require("../../models/tree-Transaction_viewmodel/yearl
 var TransactionFunctions = /** @class */ (function () {
     function TransactionFunctions() {
     }
+    //** This function map a TransactionRequest to a Transaction */
     TransactionFunctions.setTransactionDetail = function (TransactionRequest) {
         var transaction = new transaction_1.Transaction();
         transaction.id = TransactionRequest.id;
@@ -17,36 +18,42 @@ var TransactionFunctions = /** @class */ (function () {
         transaction.time = TransactionRequest.time;
         return transaction;
     };
+    //** This function map a TransactionRequest plus specific day to a  DailyTransaction */
     TransactionFunctions.setDailyTransaction = function (day, transaction) {
         var transactionDay = new dailyTransaction_1.DailyTransaction();
         transactionDay.day = day;
         transactionDay.transactionCollection.push(transaction);
         return transactionDay;
     };
+    //** This function map a DailyTransaction plus specific week to a  WeeklyTransaction */
     TransactionFunctions.setWeeklyTransaction = function (week, transactionDay) {
         var transactionWeek = new weeklyTransaction_1.WeeklyTransaction();
         transactionWeek.week = week;
         transactionWeek.dailyTransactionCollection.push(transactionDay);
         return transactionWeek;
     };
+    //** This function map a WeeklyTransaction plus specific month to a MonthlyTransaction */
     TransactionFunctions.setMonthlyTransaction = function (month, transactionWeek) {
         var transactionMonth = new monthlyTransaction_1.MonthlyTransaction();
         transactionMonth.month = month;
         transactionMonth.weeklyTransactionCollection.push(transactionWeek);
         return transactionMonth;
     };
+    //** This function map a MonthlyTransaction plus specific year to a YearlyTransaction */
     TransactionFunctions.setYearlyTransaction = function (year, transactionMonth) {
         var transactionYear = new yearlyTransaction_1.YearlyTransaction();
         transactionYear.year = year;
         transactionYear.monthlyTransactionCollection.push(transactionMonth);
         return transactionYear;
     };
+    //** This function map a YearlyTransaction plus specific customer_id to a CustomerTransaction */
     TransactionFunctions.setCustomerTransaction = function (customer_id, transactionYear) {
         var customerTransaction = new customerTransaction_1.CustomerTransaction();
         customerTransaction.customer_id = customer_id;
         customerTransaction.yearlyTransactionCollection.push(transactionYear);
         return customerTransaction;
     };
+    //** */
     TransactionFunctions.createCustomerTransaction = function (transactionRequest, dateParts) {
         var yearlyTransactionDetail = TransactionFunctions.creatYearlyTransaction(transactionRequest, dateParts);
         var customerTransaction = TransactionFunctions.setCustomerTransaction(transactionRequest.customer_id, yearlyTransactionDetail);

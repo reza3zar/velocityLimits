@@ -3,9 +3,11 @@ exports.__esModule = true;
 exports.TransactionEvaluator = void 0;
 var velocity = require("../../setting/velocity/limits_config");
 var transactionResponse_1 = require("../../models/transaction/transactionResponse");
+/** This class is responsibile for evaluate customerTransaction */
 var TransactionEvaluator = /** @class */ (function () {
     function TransactionEvaluator() {
     }
+    /** This function should check customer transaction base specific policy(velocity limits) and return transactions response  */
     TransactionEvaluator.transactionEval = function (customerTransactionCollection) {
         var transactionResponseCollection = new Array();
         customerTransactionCollection.forEach(function (customerTransactionNode) {
@@ -41,6 +43,7 @@ var TransactionEvaluator = /** @class */ (function () {
         });
         return transactionResponseCollection;
     };
+    /** This is a function to check is a transaction is accepted or not base velocityLimits config file. */
     TransactionEvaluator.checkTransactionAcceptability = function (sum_loads_value_daily, load_amount, sum_loads_value_Weekly, sum_loads_times_daily) {
         var maximumLoadAcceptable_perday = velocity.limitsConfig.maximum_load_amount_per_day;
         var maximumLoadAcceptable_perweek = velocity.limitsConfig.maximum_load_amount_per_week;
