@@ -24,7 +24,7 @@ var TransactionEvaluator = /** @class */ (function () {
                                 var hasDuplicatedRecord = transactionResponseCollection.filter(function (x) { return x.id === transaction_id && x.customer_id === customer_id; });
                                 if (hasDuplicatedRecord && hasDuplicatedRecord.length > 0)
                                     return;
-                                if (checkTransactionAcceptability(sum_loads_value_daily, transaction_value, sum_loads_value_Weekly, sum_loads_times_daily)) {
+                                if (TransactionEvaluator.checkTransactionAcceptability(sum_loads_value_daily, transaction_value, sum_loads_value_Weekly, sum_loads_times_daily)) {
                                     sum_loads_value_daily += transaction_value;
                                     var transactionResponse = new transactionResponse_1.TransactionResponse(transaction_id, customer_id, true);
                                     transactionResponseCollection.push(transactionResponse);
@@ -41,14 +41,14 @@ var TransactionEvaluator = /** @class */ (function () {
         });
         return transactionResponseCollection;
     };
+    TransactionEvaluator.checkTransactionAcceptability = function (sum_loads_value_daily, load_amount, sum_loads_value_Weekly, sum_loads_times_daily) {
+        var maximumLoadAcceptable_perday = velocity.limitsConfig.maximum_load_amount_per_day;
+        var maximumLoadAcceptable_perweek = velocity.limitsConfig.maximum_load_amount_per_week;
+        var maximumTimesAcceptable_perday = velocity.limitsConfig.maximum_times_loads_can_be_performed_per_day;
+        return sum_loads_value_daily <= maximumLoadAcceptable_perday && (sum_loads_value_daily + load_amount) <= maximumLoadAcceptable_perday && sum_loads_value_Weekly <= maximumLoadAcceptable_perweek
+            && sum_loads_value_Weekly + load_amount <= maximumLoadAcceptable_perweek
+            && sum_loads_times_daily <= maximumTimesAcceptable_perday;
+    };
     return TransactionEvaluator;
 }());
 exports.TransactionEvaluator = TransactionEvaluator;
-var checkTransactionAcceptability = function (sum_loads_value_daily, load_amount, sum_loads_value_Weekly, sum_loads_times_daily) {
-    var maximumLoadAcceptable_perday = velocity.limitsConfig.maximum_value_can_be_load_per_day;
-    var maximumLoadAcceptable_perweek = velocity.limitsConfig.maximum_value_can_be_load_per_week;
-    var maximumTimesAcceptable_perday = velocity.limitsConfig.maximum_times_loads_can_be_performed_per_day;
-    return sum_loads_value_daily <= maximumLoadAcceptable_perday && (sum_loads_value_daily + load_amount) <= maximumLoadAcceptable_perday && sum_loads_value_Weekly <= maximumLoadAcceptable_perweek
-        && sum_loads_value_Weekly + load_amount <= maximumLoadAcceptable_perweek
-        && sum_loads_times_daily <= maximumTimesAcceptable_perday;
-};

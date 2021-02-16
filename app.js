@@ -4,11 +4,11 @@ var transactionRequestSource = require("./data/transactions.json");
 var errorMessages = require("./setting/transaction-error/errors");
 var transactionTreeHandler = require("./handler/tree_node/transaction/tree/customerTransactionHandler");
 var evals = require("./evaluator/transactionRequest/evaluator");
-var validator_1 = require("./validation/validator");
+var validatorDataSrc_1 = require("./validation/validatorDataSrc");
 var velocityLimitsEvaluator = function () {
     try {
         var transactionRequest = transactionRequestSource;
-        var isValidDataSrc = validator_1.Validator.validateDataSource(transactionRequest);
+        var isValidDataSrc = validatorDataSrc_1.ValidatorDataSrc.validateDataSource(transactionRequest);
         if (!isValidDataSrc)
             throw new Error(errorMessages.errors['input-not-found']);
         var customerTransactionTreeCollection = transactionTreeHandler.CustomerTransactionHandler

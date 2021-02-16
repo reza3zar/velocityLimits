@@ -28,7 +28,7 @@ export class InquiryCustomerTransaction{
     const monthCustomerTransaction = InquiryCustomerTransaction.getMonthOfCustomerTransaction(customerTransaction, dateTimeParts);
     const weekCustomerTransaction = monthCustomerTransaction.weeklyTransactionCollection.filter(x => x.week === dateTimeParts.week);
     if (!weekCustomerTransaction || weekCustomerTransaction.length !== 1)
-      throw new Error(errorMessages.errors['month-customer-transaction-is-not-correct-format']);
+      throw new Error(errorMessages.errors["week-customer-transaction-is-not-correct-format"]);
     
     return weekCustomerTransaction[0];
   }

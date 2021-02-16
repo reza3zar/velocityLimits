@@ -6,7 +6,7 @@ import * as  errorMessages from './setting/transaction-error/errors';
 import * as  transactionTreeHandler from './handler/tree_node/transaction/tree/customerTransactionHandler';
 import * as  evals from './evaluator/transactionRequest/evaluator';
 
-import { Validator } from './validation/validator';
+import { ValidatorDataSrc } from './validation/validatorDataSrc';
 import { TransactionResponse } from './models/transaction/transactionResponse';
 import { CustomerTransaction } from './models/tree-transaction_viewmodel/customerTransaction';
 
@@ -14,7 +14,7 @@ import { CustomerTransaction } from './models/tree-transaction_viewmodel/custome
 let velocityLimitsEvaluator=()=> {
   try {
     let transactionRequest: Array<TransactionRequest> = transactionRequestSource;
-    const isValidDataSrc = Validator.validateDataSource(transactionRequest);
+    const isValidDataSrc = ValidatorDataSrc.validateDataSource(transactionRequest);
   
     if (!isValidDataSrc)
       throw new Error(errorMessages.errors['input-not-found']);

@@ -1,5 +1,5 @@
 import { DateTimeParts } from '../models/common/dateTimeParts';
-import * as moment from 'moment'
+import * as moment from 'moment';
 import { errors } from '../setting/transaction-error/errors';
 
 export class DateTimeUtility{

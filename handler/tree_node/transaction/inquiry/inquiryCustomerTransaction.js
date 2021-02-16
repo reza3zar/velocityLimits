@@ -22,7 +22,7 @@ var InquiryCustomerTransaction = /** @class */ (function () {
         var monthCustomerTransaction = InquiryCustomerTransaction.getMonthOfCustomerTransaction(customerTransaction, dateTimeParts);
         var weekCustomerTransaction = monthCustomerTransaction.weeklyTransactionCollection.filter(function (x) { return x.week === dateTimeParts.week; });
         if (!weekCustomerTransaction || weekCustomerTransaction.length !== 1)
-            throw new Error(errorMessages.errors['month-customer-transaction-is-not-correct-format']);
+            throw new Error(errorMessages.errors["week-customer-transaction-is-not-correct-format"]);
         return weekCustomerTransaction[0];
     };
     InquiryCustomerTransaction.getDayOfCustomerTransaction = function (customerTransaction, dateTimeParts) {
