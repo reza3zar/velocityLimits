@@ -118,7 +118,9 @@ We value well-structured, self-documenting code with sensible test coverage. Des
 
 # Runs commands:
 
-1. run test: Jest framework : npx jest
+1. run test: Jest framework : npx jest  / npx jest --coverage
 2. compile typescripts to js: tsc app.ts --watch
-3. run app: app.js is core this app to run use nodemon app.js
+3. run app: app.js run to show output (transactionResponse) : nodemon app.js
+
+![plot](./asset/testcoverage.png)
 
