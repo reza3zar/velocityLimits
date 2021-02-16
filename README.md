@@ -112,7 +112,7 @@ We value well-structured, self-documenting code with sensible test coverage. Des
 
 ![plot](./asset/tree.png)
 
-3.Step three: evaluate all tree (tree = customer transactions) base on vilocity limits.
+3.Step three: evaluate all tree (tree = customer transactions) base on velocity limits.
 
 4.Last step: print all transaction with status that shows every transaction is accepted or not
 
