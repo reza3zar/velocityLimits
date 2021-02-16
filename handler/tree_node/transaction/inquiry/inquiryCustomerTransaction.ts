@@ -45,4 +45,4 @@ export class InquiryCustomerTransaction{
 static getCustomerYearlyTransacion = (customerTransaction: CustomerTransaction, year: number): Array<YearlyTransaction> => {
     return customerTransaction.yearlyTransactionCollection.filter(x => x.year === year);
   }
-}
+} 
