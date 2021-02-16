@@ -37,6 +37,7 @@ We value well-structured, self-documenting code with sensible test coverage. Des
 # My soultion step by step :
 1.Step one: read all transaction. e.g.
 ```json
+[
   {
     "id": "1010",
     "customer_id": "528",
@@ -95,11 +96,17 @@ We value well-structured, self-documenting code with sensible test coverage. Des
     "id": "22010",
     "customer_id": "528",
     "load_amount": "$3050",
-    "time": "2000-12-23T00:05:20Z"
+    "time": "2016-12-23T00:05:20Z"
+  }
+  {
+      "id": "52010",
+    "customer_id": "876",
+    "load_amount": "$250",
+    "time": "2017-10-23T00:05:20Z"
   },
   {
   ...
-  }
+  }]
 ```
 2.Step two: create a tree per customer base on above transactions. e.g.
 
