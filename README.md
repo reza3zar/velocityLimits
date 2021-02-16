@@ -119,6 +119,6 @@ We value well-structured, self-documenting code with sensible test coverage. Des
 # Runs commands:
 
 1. run test: Jest framework : npx jest
-2. compile typescripts: tsc app.ts --watch
-3.
+2. compile typescripts to js: tsc app.ts --watch
+3. run app: app.js is core this app to run use nodemon app.js
 
