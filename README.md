@@ -34,7 +34,7 @@ You're welcome to write your program in a general-purpose language of your choos
 
 We value well-structured, self-documenting code with sensible test coverage. Descriptive function and variable names are appreciated, as is isolating your business logic from the rest of your code.
 
-# My soultion step by step :
+# My solution step by step:
 1.Step one: read all transaction. e.g.
 ```json
 [
@@ -112,7 +112,7 @@ We value well-structured, self-documenting code with sensible test coverage. Des
 
 ![plot](./asset/tree.png)
 
-3.Step three: evaluate all tree (tree = customer transactions) base on vilocity limits.
+3.Step three: evaluate all tree (tree = customer transactions) base on velocity limits.
 
 4.Last step: print all transaction with status that shows every transaction is accepted or not
 
