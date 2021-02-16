@@ -114,5 +114,11 @@ We value well-structured, self-documenting code with sensible test coverage. Des
 
 3.Step three: evaluate all tree (tree = customer transactions) base on velocity limits.
 
-4.Last step: print all transaction with status that shows every transaction is accepted or not
+4.Last step: print all transaction with status that shows every transaction is accepted or not.
+
+# Runs commands:
+
+1. run test: Jest framework : npx jest
+2. compile typescripts: tsc app.ts --watch
+3.
 
