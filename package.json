@@ -1,7 +1,7 @@
 {
-  "name": "koho-assessment",
+  "name": "koho-assignment",
   "version": "1.0.0",
-  "description": "KOHO assessment",
+  "description": "KOHO assignment",
   "main": ".mongorc.js",
   "scripts": {
     "start": "",
